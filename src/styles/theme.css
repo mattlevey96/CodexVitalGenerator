@@ -1,0 +1,263 @@
+:root {
+  --bg: #0e1116;
+  --bg2: #151b23;
+  --panel: #1b2330;
+  --line: #2f3f56;
+  --text: #d7e1ee;
+  --muted: #8fa1b7;
+  --accent: #28d6af;
+  --accent2: #4f9cff;
+  --warn: #ffc96b;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(80% 120% at 20% 0%, #1a2534 0%, var(--bg) 48%), linear-gradient(140deg, #0e1116, #161f2e);
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+h1 {
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.top-controls,
+.row,
+.bottom-strip,
+.export-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.top-controls {
+  margin: 12px 0;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  background: #121824;
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+button {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #20293a, #151d2b);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent2);
+}
+
+.assistant-strip {
+  background: rgba(20, 28, 40, 0.75);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.assistant-strip input {
+  min-width: 280px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.chip {
+  font-size: 0.85rem;
+  padding: 4px 9px;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #1b2534, #151d2a);
+  padding: 10px;
+}
+
+.panel h3 {
+  margin: 0 0 8px;
+  color: #d6f4ff;
+}
+
+.slider-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 56px;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-row strong {
+  text-align: right;
+  color: #c2d2e7;
+  font-size: 0.85rem;
+}
+
+.master {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.meter {
+  width: 220px;
+  height: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0f1520;
+}
+
+.meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--warn), #ff5a5a);
+  transition: width 70ms linear;
+}
+
+.keyboard {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 2px;
+  margin-top: 14px;
+}
+
+.key {
+  border-radius: 0 0 6px 6px;
+  height: 120px;
+  padding: 0;
+  border: 1px solid #0b1018;
+  position: relative;
+}
+
+.key span {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-size: 0.64rem;
+  color: #6f8096;
+}
+
+.key.white {
+  background: linear-gradient(180deg, #dce4f0, #afbfda);
+}
+
+.key.black {
+  margin-top: 0;
+  background: linear-gradient(180deg, #2e3746, #121924);
+}
+
+.key.active {
+  outline: 2px solid var(--accent);
+}
+
+.export-bar {
+  margin-top: 14px;
+}
+
+.details {
+  margin-top: 12px;
+}
+
+.drawer-toggle {
+  width: 100%;
+}
+
+.drawer-body {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  margin-top: 8px;
+  background: #0f1520;
+}
+
+pre {
+  background: #121a29;
+  border: 1px solid #24344d;
+  border-radius: 8px;
+  padding: 8px;
+  max-height: 210px;
+  overflow: auto;
+  font-size: 0.78rem;
+}
+
+.warnings p {
+  color: var(--warn);
+  margin: 6px 0;
+}
+
+footer {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .panel-grid {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+  .assistant-strip input {
+    min-width: 0;
+    width: 100%;
+  }
+}
