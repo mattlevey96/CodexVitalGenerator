@@ -12,6 +12,11 @@ type Voice = {
 
 const TABLE_STEPS = 8;
 
+function toOscillatorType(shape: Patch["lfo1"]["shape"]): OscillatorType {
+  if (shape === "saw") return "sawtooth";
+  return shape;
+}
+
 class PatchPalEngine {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
@@ -139,7 +144,7 @@ class PatchPalEngine {
 
     if (patch.lfo1.target === "filter_cutoff" && patch.lfo1.amount > 0.001) {
       const lfo = ctx.createOscillator();
-      lfo.type = patch.lfo1.shape;
+      lfo.type = toOscillatorType(patch.lfo1.shape);
       lfo.frequency.value = patch.lfo1.rateHz;
       const mod = ctx.createGain();
       mod.gain.value = patch.lfo1.amount * 1800;
@@ -315,9 +320,9 @@ class PatchPalEngine {
     return wave;
   }
 
-  private makeDriveCurve(amount: number): Float32Array {
+  private makeDriveCurve(amount: number): Float32Array<ArrayBuffer> {
     const samples = 1024;
-    const curve = new Float32Array(samples);
+    const curve = new Float32Array(samples) as Float32Array<ArrayBuffer>;
     for (let i = 0; i < samples; i += 1) {
       const x = (i / (samples - 1)) * 2 - 1;
       curve[i] = Math.tanh(x * amount);
